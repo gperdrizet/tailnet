@@ -128,10 +128,13 @@ noise:
   private_key_path: /var/lib/headscale/noise_private.key
 
 # IP address ranges assigned to nodes on the tailnet.
-# Note: this key was renamed from ip_prefixes to prefixes in Headscale v0.23.
+# Note: the format changed in Headscale v0.23 from a list (ip_prefixes) to a
+# map with explicit v4/v6 keys. The allocation strategy controls how IPs are
+# assigned: "sequential" assigns the next available address in order.
 prefixes:
-  - fd7a:115c:a1e0::/48
-  - 100.64.0.0/10
+  v4: 100.64.0.0/10
+  v6: fd7a:115c:a1e0::/48
+  allocation: sequential
 
 # DERP relay configuration.
 # The embedded DERP server is disabled. Tailscale's public DERP map is used

@@ -18,12 +18,13 @@
 #   sudo bash scripts/install-tailscale-client.sh
 #
 # To generate a pre-auth key before running this script, on the VPS run:
-#   headscale preauthkeys create --user siderealyear --expiration 1h
+#   sudo headscale users list                           # find the numeric user ID
+#   sudo headscale preauthkeys create --user <id> --expiration 24h --reusable
 #
 # If not using a pre-auth key, Tailscale will print a URL like:
 #   https://headscale.perdrizet.org/register/nodekey:XXXX...
 # Approve the node on the VPS with:
-#   headscale nodes register --user siderealyear --key nodekey:XXXX...
+#   sudo headscale nodes register --user <id> --key nodekey:XXXX...
 #
 # See docs/manual-steps.md for the full node registration workflow.
 
@@ -90,7 +91,8 @@ if [[ -n "$AUTH_KEY" ]]; then
 
     tailscale up \
         --login-server="${SERVER_URL}" \
-        --auth-key="${AUTH_KEY}"
+        --auth-key="${AUTH_KEY}" \
+        --force-reauth
 
     log 'Connected successfully.'
     log "Run 'tailscale status' to confirm this device appears in the tailnet."
@@ -100,7 +102,8 @@ else
     # approved on the VPS using the headscale CLI.
     log 'Connecting to Headscale (interactive registration)...'
     log 'Tailscale will print a URL. To approve this device, on the VPS run:'
-    log "  headscale nodes register --user siderealyear --key <nodekey from URL>"
+    log '  sudo headscale users list                        # get the numeric user ID'
+    log '  sudo headscale nodes register --user <id> --key <nodekey from URL>'
 
     tailscale up --login-server="${SERVER_URL}"
 fi
