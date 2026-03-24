@@ -36,7 +36,7 @@ SERVER_URL='https://headscale.perdrizet.org'
 BASE_DOMAIN='perdrizet.org'
 
 # Optional: set to an email address to receive Let's Encrypt expiry notices.
-ACME_EMAIL=''
+ACME_EMAIL='siderealyear@headscale.perdrizet.org'
 
 # The Headscale user that all devices in this tailnet will belong to.
 HEADSCALE_USER='siderealyear'
@@ -128,7 +128,8 @@ noise:
   private_key_path: /var/lib/headscale/noise_private.key
 
 # IP address ranges assigned to nodes on the tailnet.
-ip_prefixes:
+# Note: this key was renamed from ip_prefixes to prefixes in Headscale v0.23.
+prefixes:
   - fd7a:115c:a1e0::/48
   - 100.64.0.0/10
 
