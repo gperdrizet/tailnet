@@ -209,7 +209,7 @@ Expected MagicDNS hostnames for this tailnet:
 
 | Device           | System hostname | MagicDNS hostname               |
 |------------------|-----------------|---------------------------------|
-| This machine     | desktop         | desktop.ts.perdrizet.org        |
+| Desktop          | pyrite          | pyrite.ts.perdrizet.org         |
 | Laptop           | laptop          | laptop.ts.perdrizet.org         |
 | Phone            | phone           | phone.ts.perdrizet.org          |
 | VPS (gatekeeper) | gatekeeper      | gatekeeper.ts.perdrizet.org     |

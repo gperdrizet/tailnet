@@ -35,12 +35,12 @@ is retained in configs/nginx-headscale.conf in this repository.
 
 ## Devices
 
-| Device          | Role                                | System hostname |
-|-----------------|-------------------------------------|-----------------|
-| This machine    | Tailscale client                    | desktop         |
-| Laptop          | Tailscale client                    | laptop          |
-| Phone           | Tailscale client                    | phone           |
-| VPS (gatekeeper)| Headscale server, Tailscale exit node | gatekeeper    |
+| Device          | Role                                  | System hostname | Tailscale IP |
+|-----------------|---------------------------------------|-----------------|---------------|
+| Desktop         | Tailscale client                      | pyrite          | 100.64.0.2   |
+| Laptop          | Tailscale client                      | laptop          | 100.64.0.3   |
+| Phone           | Tailscale client                      | phone           | TBD          |
+| VPS (gatekeeper)| Headscale server, Tailscale exit node | gatekeeper      | 100.64.0.1   |
 
 Tailscale IPs are assigned dynamically on first registration. Run
 `tailscale status` on any device to view current IPs.
