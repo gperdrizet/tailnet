@@ -60,10 +60,13 @@ log "Setting exit node to ${VPS_IP}..."
 # --exit-node routes all internet-bound traffic through the specified node.
 # --exit-node-allow-lan-access preserves access to local network resources
 # (e.g. printers, NAS) even while the exit node is active.
+# --reset clears any previously set non-default flags (such as --hostname)
+# so that tailscale up does not require them to be restated.
 tailscale up \
     --login-server="${SERVER_URL}" \
     --exit-node="${VPS_IP}" \
-    --exit-node-allow-lan-access=true
+    --exit-node-allow-lan-access=true \
+    --reset
 
 # --- Done --------------------------------------------------------------------
 

@@ -83,6 +83,17 @@ curl -fsSL https://tailscale.com/install.sh | sh
 
 log 'Tailscale installed.'
 
+# Wait for the tailscaled daemon to become ready. On some distributions the
+# daemon is started by the install script but needs a moment to initialize
+# its backend before tailscale up can connect to it.
+log 'Waiting for tailscaled to become ready...'
+for i in $(seq 1 15); do
+    tailscale status &>/dev/null && break
+    sleep 1
+done
+# Give it one extra second after the socket is up to avoid a 503 race.
+sleep 1
+
 # --- Connect to the Headscale control server ---------------------------------
 
 if [[ -n "$AUTH_KEY" ]]; then
